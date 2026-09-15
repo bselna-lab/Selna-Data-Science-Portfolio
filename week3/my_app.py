@@ -11,4 +11,14 @@ import pandas as pd
 
 st.subheader("Exploring Our Dataset")
 
-df = pd.read_csv("/Users/bridgetselna/Documents/GitHub/Selna-Data-Science-Portfolio/week3/data/sample_data.csv")
+df = pd.read_csv("data/sample_data.csv")
+
+st.write("Here's our data")
+st.dataframe(df)
+
+#creating an interactive button for city
+city = st.selectbox("Select a city",df["City"].unique() )
+st.write(f"People in {city}")
+st.dataframe(df[df["City"] == city])
+
+st.bar_chart(df["Salary"])
