@@ -16,7 +16,7 @@ col1, col2 = st.columns(2)
 
 # player 1 column
 with col1:
-    st.subheader("Player 1")
+    st.subheader("Player 1🏀")
 #select a team
     teams1 = sorted(df["team_abbreviation"].dropna().unique())
 
@@ -92,7 +92,7 @@ with col1:
 
     # player 1 column
 with col2:
-    st.subheader("Player 2")
+    st.subheader("Player 2🏀")
 #select a team
     teams2 = sorted(df["team_abbreviation"].dropna().unique())
 
