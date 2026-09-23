@@ -41,7 +41,7 @@ with col1:
         player1_filtered = player1_data[player1_data["season"].between(start_s1, end_s1)]
 #filter rows for range
     elif len(seasons1) == 1:
-        st.infof("Only 1 season available for {player1}: {seasons1[0]}")
+        st.info("Only 1 season available for {player1}: {seasons1[0]}")
         player1_filtered = player1_data
     else:
         player1_filtered = pd.DataFrame()
@@ -116,7 +116,7 @@ with col2:
         player2_filtered = player2_data[player2_data["season"].between(start_s2, end_s2)]
 #filter rows for range
     elif len(seasons2) == 2:
-        st.infof("Only 1 season available for {player2}: {seasons2[0]}")
+        st.info("Only 1 season available for {player2}: {seasons2[0]}")
         player2_filtered = player2_data
     else:
         player2_filtered = pd.DataFrame()
