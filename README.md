@@ -10,7 +10,7 @@ Through this project, I used a dataset about NBA player statistics to make a bas
 ### 2. [Tidy Data Project: Mutant Moneyball](TidyData-Project/)
 Through this project, I cleaned and explored a messy dataset of X-Men comic collection values. I reshaped the data from wide to long format with 'melt()', split combined column names with 'str.split()', cleaned dollar-formatted text into numbers, and handled missing values. I then summarized the tidy data with pivot tables, bar charts, and box plots. The main finding is that collection values fall steeply from the 1960s to the 1990s in every valuation source.
 
-### 3. Machine Learning Streamlit App
+### 3. [Machine Learning Streamlit App](https://bselna-lab-selna-data-science-portfo-mlstreamlitappmyapp-csgkef.streamlit.app/)
 
 Through this project, I built an interactive app where anyone can train a machine learning model without writing code. You can use the sample Spotify dataset or upload your own CSV, pick which column to predict, and the app trains a decision tree (a regressor for number targets and a classifier for category targets). Sliders adjust the model's hyperparameters (`max_depth` and `min_samples_split`), and the model retrains each time. A grid search button suggests settings, and the app shows test metrics, including R² and MAE, or accuracy, precision, and recall, a chart, and a picture of the tree, all explained in plain language.
 
