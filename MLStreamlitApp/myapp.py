@@ -20,7 +20,7 @@ data_source = st.radio(
 )
 #had to look up Path because the file was too big for importing the file normally
 if data_source == "Use the sample Spotify dataset":
-    pd.read_csv(Path(__file__).parent / "spotify_sample.csv")
+    df = pd.read_csv(Path(__file__).parent / "spotify_sample.csv")
 else:
     uploaded_file = st.file_uploader("Upload a CSV file", type="csv")
     if uploaded_file is None:
