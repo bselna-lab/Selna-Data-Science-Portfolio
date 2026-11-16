@@ -50,7 +50,7 @@ if df[target].dtype == "object" or df[target].dtype == "bool" or df[target].nuni
 else:
     task = "regression"
 
-    st.write(f"Since **{target}** looks like {'categories' if task == 'classification' else 'a number'}, this is a **{task}** problem.")
+st.write(f"Since **{target}** looks like {'categories' if task == 'classification' else 'a number'}, this is a **{task}** problem.")
 
 #Separate features from target and clean up
 X = df.drop(columns=[target])
@@ -79,27 +79,24 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
 
 #Grid Search to suggest the hyperparameter
 st.subheader("❓Not sure what to pick❓")
-
 if st.button("Find suggested settings!"):
     if task == "regression":
         base_model = DecisionTreeRegressor(random_state=42)
+        score_type = "r2"
     else:
         base_model = DecisionTreeClassifier(random_state=42)
+        score_type = "accuracy"
 
     param_grid = {
-    'max_depth': [None, 5, 10, 15, 20],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
-    'max_features': [None, 'sqrt', 'log2'],
-    'criterion': ['squared_error', 'friedman_mse', 'absolute_error']
+        "max_depth": [2, 4, 6, 8, 10, 15],
+        "min_samples_split": [2, 10, 20, 50],
     }
 
     grid_search = GridSearchCV(
-        estimator=DecisionTreeRegressor(random_state=42),
+        estimator=base_model,
         param_grid=param_grid,
         cv=5,
-        scoring='r2',
-        n_jobs=-1
+        scoring=score_type
     )
 
     grid_search.fit(X_train, y_train)
