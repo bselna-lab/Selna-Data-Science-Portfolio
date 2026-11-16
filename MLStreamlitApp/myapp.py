@@ -86,15 +86,21 @@ if st.button("Find suggested settings!"):
         base_model = DecisionTreeClassifier(random_state=42)
 
     param_grid = {
-        "max_depth": [2, 4, 6, 8, 10, 15],
-        "min_samples_split": [2, 10, 20, 50],
-        "min_samples_leaf": [1, 2, 3,4],
-        "class_weight": [None, 'balanced']
+    'max_depth': [None, 5, 10, 15, 20],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': [None, 'sqrt', 'log2'],
+    'criterion': ['squared_error', 'friedman_mse', 'absolute_error']
     }
 
-    grid_search = GridSearchCV(estimator = base_model, 
-                               param_grid = param_grid, 
-                               cv=5)
+    grid_search = GridSearchCV(
+        estimator=DecisionTreeRegressor(random_state=42),
+        param_grid=param_grid,
+        cv=5,
+        scoring='r2',
+        n_jobs=-1
+    )
+
     grid_search.fit(X_train, y_train)
 
     best = grid_search.best_params_
