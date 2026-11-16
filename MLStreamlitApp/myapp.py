@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
@@ -17,9 +18,9 @@ data_source = st.radio(
     "Where should the data come from?",
     ["Use the sample Spotify dataset", "Upload my own CSV"]
 )
-
+#had to look up Path because the file was too big for importing the file normally
 if data_source == "Use the sample Spotify dataset":
-    df = pd.read_csv("spotify_sample.csv")
+    pd.read_csv(Path(__file__).parent / "spotify_sample.csv")
 else:
     uploaded_file = st.file_uploader("Upload a CSV file", type="csv")
     if uploaded_file is None:
