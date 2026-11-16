@@ -4,7 +4,7 @@ import streamlit as st
 from pathlib import Path
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
+from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier, plot_tree
 
 
 st.title("Machine Learning!🤖")
@@ -137,13 +137,37 @@ else:
 
 model.fit(X_train, y_train)
 
+# Show the tree
+st.header("4. The Decision Tree")
+
+levels = st.slider("How many levels of the tree to show", min_value=1, max_value=4, value=2)
+
+if task == "classification":
+    class_names = [str(c) for c in model.classes_]
+else:
+    class_names = None
+
+fig_tree, ax_tree = plt.subplots(figsize=(14, 6))
+plot_tree(
+    model,
+    feature_names=list(X.columns),
+    class_names=class_names,
+    max_depth=levels,
+    filled=True,
+    rounded=True,
+    fontsize=8,
+    ax=ax_tree
+)
+st.pyplot(fig_tree)
+
+st.caption("Each box is a yes/no question about one feature. If the answer is yes, follow the left arrow, and if no, follow the right arrow. The boxes at the bottom are the model's guesses. Only the top few levels are shown so it stays readable.")
 #2 performance metrics on the test data R2, MAE, accuraccy, precision, recall
 from sklearn.metrics import (
     r2_score, mean_absolute_error,
     accuracy_score, precision_score, recall_score,
     ConfusionMatrixDisplay
 )
-st.header("4. Results")
+st.header("5. Results")
 
 #model's guesses
 y_train_pred = model.predict(X_train)
